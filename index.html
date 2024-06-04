@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bouncing Square</title>
+<style>
+    body, html {
+        margin: 0;
+        height: 100%;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .square {
+        width: 500px;
+        height: 500px;
+        background-color: rgb(247, 0, 255);
+        position: absolute;
+        cursor: pointer;
+        animation: bounce 2s infinite alternate;
+    }
+
+    @keyframes bounce {
+        0% {
+            top: 0;
+        }
+        100% {
+            top: calc(100vh - 100px);
+        }
+    }
+</style>
+</head>
+<body>
+<div class="square" onclick="changeSizeAndSpeed(event)"></div>
+
+<script>
+function changeSizeAndSpeed(event) {
+    var square = event.target;
+    var currentSize = square.offsetWidth;
+    var currentSpeed = parseFloat(getComputedStyle(square).animationDuration);
+
+    // Decrease size by 10 pixels
+    square.style.width = (currentSize - 100) + 'px';
+    square.style.height = (currentSize - 100) + 'px';
+
+    // Increase speed by 0.2 seconds
+    square.style.animationDuration = (currentSpeed - 0.2) + 's';
+}
+</script>
+</body>
+</html>
